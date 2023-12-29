@@ -1,0 +1,19 @@
+body {
+    text-align: center;
+}
+
+#video-container {
+    position: relative;
+    margin: 20px auto;
+}
+
+#video-feed {
+    width: 100%;
+    max-width: 600px;
+}
+
+#emotion-canvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+}
