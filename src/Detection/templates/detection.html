@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test -</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #2c3e50; 
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            color: #ecf0f1; 
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            flex-direction: column;
+        }
+
+        .parallax-content {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+        }
+
+        .redirect-info {
+            font-size: 20px;
+            margin-top: 20px;
+            animation: fadeIn 2s ease-in-out;
+        }
+
+        .countdown {
+            font-size: 24px;
+            margin-top: 10px;
+            font-weight: bold;
+            color: #e74c3c;
+        }
+        .back-button {
+            background-color: #3498db;
+            color: #fff;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .back-button:hover {
+            background-color: #2980b9;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+    </style>
+    <script>
+        function updateCountdown(time) {
+            document.getElementById('countdown').innerText = time;
+        }
+
+        function setTimeoutRedirect() {
+            let countdown = 1500; 
+            updateCountdown(countdown);
+
+            let countdownInterval = setInterval(function () {
+                countdown--;
+                updateCountdown(countdown);
+
+                if (countdown <= 0) {
+                    clearInterval(countdownInterval);
+                    window.location.href = "http://localhost:3000/Home";
+                }
+            }, 1000); 
+        }
+        window.onload = function() {
+            setTimeoutRedirect();
+        };
+
+        function goBackToHome() {
+            window.location.href = "http://localhost:3000/Detection";
+        }
+
+    </script>
+</head>
+<body>
+    <div class="parallax-content baner-content" id="home">
+        <img src="{{ url_for('video_feed') }}" alt="Centered Image">
+    </div>
+
+    <div class="redirect-info">
+        <span id="countdown" class="countdown">25:00</span> 
+    </div>
+
+    <button class="back-button" onclick="goBackToHome()"> ← </button>
+    
+</body>
+</html>
